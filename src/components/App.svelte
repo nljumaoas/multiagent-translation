@@ -3,9 +3,29 @@
 </script>
 
 <main>
-  <h1>Svelte template</h1>
+  <h1>Developing a LLM-Driven Multi-Agent Framework for Multimodal Translation</h1>
 
-  <p>Write your HTML here</p>
+  <h2>Motivation</h2>
+  <p>Motivation</p>
+  
+  <h2>Dataset</h2>
+  <p>Motivation</p>
+
+  <h2>Methods</h2>
+  <p>Motivation</p>
+
+  <h2>Evaluation</h2>
+  <p>Motivation</p>
+
+  <h2>Results</h2>
+  <p>Motivation</p>
+
+  <h2>Conclusion</h2>
+  <p>Motivation</p>
+
+  <h2>References</h2>
+  <p>Motivation</p>
+  
 </main>
 
 <style>
