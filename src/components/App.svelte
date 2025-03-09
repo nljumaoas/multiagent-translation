@@ -33,7 +33,7 @@
     <p>Our innovated method pipeline involves three stages with the collaboration of agents... (more to come)</p>
     <img src="method_pipeline.png" alt="Method Pipeline Diagram" class="content-image">
     
-    <section class="subsection">
+    <section class="typesetting subsection">
       <h3>Typesetting</h3>
       <p>In the final stage of our pipeline, we integrate translated text back into manga pages while preserving visual aesthetics and readability. Our system automates text removal and adaptive reformatting to ensure a natural and high-quality presentation.</p>
       <ul>
@@ -44,16 +44,45 @@
 
     <h2>Evaluation</h2>
     <p>For evaluation method, we conducted ... (more to come with text explanation and equations)</p>
+    
+    <section class="machine eval">
+      <h3>Machine Evaluation</h3>
+      <p>To systematically assess the quality of translations, we incorporate Machine Evaluation using the ChatGPT web application with the GPT-4o model as an automated evaluator. This approach allows us to efficiently compare different translation outputs at scale.</p>
+    </section>
+
+    <section class="challenge of evaluation on typesetting">
+      <h3>Challenge of Evaluation on Typesetting Stage</h3>
+      <p>Unlike translation accuracy, which can be measured with structured metrics, typesetting evaluation lacks automated methods. Assessing readability, artistic consistency, and text alignment remains largely subjective.</p>
+      <p>Existing tools can assist with text placement, but no standardized framework exists for systematically evaluating typesetting quality. Factors like font choice, text integration with artwork, and complex layouts pose significant challenges for automation.</p>
+      <p>To address this gap, our work explores approaches for structured typesetting evaluation, laying the groundwork for future research.</p>
+    </section>
 
     <h2>Results</h2>
     <p>The final result has shown that ... (will include a short summary of the result and also a few plots and tables to illustrate)</p>
     <img src="table_metrics.png" alt="table of metrics evaluation" class="eval-image">
     <img src="human_eval.png" alt="human evaluation result" class="eval-image">
 
-    <h2>Conclusion</h2>
-    <p>Overall, our pipeline... (one short paragraph to summarize findings and suggestions for future work).</p>
+    <section class="machine eval result">
+      <h3>Machine Evaluation</h3>
+      <p>The results from the GPT-4o-based Machine Evaluation indicate that our model performed favorably in comparison to baseline models:</p>
+  
+      <ul>
+        <li><strong>90% preference</strong> over Google Translate, suggesting improvements in fluency and accuracy.</li>
+        <li><strong>65% preference</strong> over the mono-agent baseline, reflecting notable enhancements in translation quality.</li>
+      </ul>
 
+      <img src="GPT_evaluation.jpeg" alt="LLM evaluation result" class="eval-image">
+      <p>These findings suggest that GPT-4o's automated evaluation aligns well with human judgment and provides valuable insights into translation quality assessment.</p>
+    </section>
+
+    <h2>Conclusion</h2>
+    <p>Our multi-agent framework enhances manga translation by improving translation quality and aligning with human reading expectations. By distributing tasks—text detection, contextual translation, and typesetting—our system ensures more natural and readable translations.</p>
+    <p>We also developed a specialized typesetting system to seamlessly integrate translated text into manga, addressing formatting challenges often overlooked in automated approaches.</p>
+    <p>Challenges remain, including speech bubble resizing and processing latency. Future work will focus on real-time translation and expanding support for other media types.</p>
+    <p>This research sets the foundation for sophisticated multimodal translation systems that balance linguistic accuracy with visual presentation.</p>
+    
     <h2>References</h2>
+    
     <p>Motivation</p>
   </section>
   
