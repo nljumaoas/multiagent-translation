@@ -32,6 +32,15 @@
     <h2>Methods</h2>
     <p>Our innovated method pipeline involves three stages with the collaboration of agents... (more to come)</p>
     <img src="method_pipeline.png" alt="Method Pipeline Diagram" class="content-image">
+    
+    <section class="subsection">
+      <h3>Typesetting</h3>
+      <p>In the final stage of our pipeline, we integrate translated text back into manga pages while preserving visual aesthetics and readability. Our system automates text removal and adaptive reformatting to ensure a natural and high-quality presentation.</p>
+      <ul>
+        <li><strong>Text Detection and Removal:</strong> We use computer vision techniques to accurately detect and remove text while maintaining the integrity of speech bubbles and background artwork. Our method eliminates text outlines and shadows with precision.</li>
+        <li><strong>Adaptive Text Placement:</strong> The system dynamically adjusts font size, line wrapping, and positioning to fit speech bubbles while preserving readability. Enhancements such as text outlines improve clarity against complex backgrounds.</li>
+      </ul>
+    </section>
 
     <h2>Evaluation</h2>
     <p>For evaluation method, we conducted ... (more to come with text explanation and equations)</p>
