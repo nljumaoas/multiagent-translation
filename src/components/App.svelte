@@ -32,7 +32,19 @@
     <h2>Methods</h2>
     <p>Our innovated method pipeline involves three stages with the collaboration of agents, beginning with page processing where text is recognized and clustered, then moving on to leverage multi-agent collaboration for translation, and at last the typesetting stage to return a translated version of the page with translations replacing the original texts.</p>
     <img src="method_pipeline.png" alt="Method Pipeline Diagram" class="content-image">
-    
+
+    <section class="processing subsection">
+      <h3>Manga-Specialized Preprocessing</h3>
+      <p> In the initial preprocessing stage, we implement a pipeline designed to identify the positions of text boxes and extract text from them.</p>
+      <ul>
+        <li><strong>Text Segmentation: </strong> Creates a mask using a text segmentation model specialized for manga, robust against cases such as oddly shaped text fields and non-text elements within speech bubbles.</li>
+        <li><strong>Clustering: </strong> Groups potential text into clusters using the OPTICS algorithm.</li>
+        <li><strong>Speech Bubble Filter: </strong> Filters out text outside speech bubbles to match baseline data by analyzing the background color of the text.</li>
+        <li><strong>Page Element Ordering: </strong> Sorts clustered text boxes into reading order using the Magi model.</li>
+        <li><strong>Text Extraction: </strong> Extracts text using MangaOCR, which is designed to be robust against scenarios specific to manga, such as text overlaid over images or accompanied by furigana, wide varieties in font style and size, and different reading orientations.</li>
+        </ul>
+    </section>
+
     <section class="translation subsection">
       <h3>Multi-agent Context-aware Translation Design</h3>
       <p> In this stage, we introduce a multi-agent system for context-aware translation, focusing on visual-heavy content like manga and comic books. The system combines Visual Language Models (VLMs) and a multi-agent collaborative framework to enhance translation accuracy and coherence, ensuring linguistic precision and contextual relevance.</p>
