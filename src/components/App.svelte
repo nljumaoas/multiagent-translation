@@ -1,5 +1,10 @@
 <script>
-  // Write your JS here, or import other files
+  const ten_008 = [
+    { src: "/ten008_raw.jpg", caption: "Original image" },
+    { src: "/ten008_maskB.png", caption: "Text segmentation mask" },
+    { src: "/ten008_clusters.png", caption: "Filtered clusters (color-coded)" },
+    { src: "/ten008_boxes.png", caption: "Ordered text boxes" }
+  ];
 </script>
 
 <main>
@@ -35,6 +40,14 @@
 
     <section class="processing subsection">
       <h3>Manga-Specialized Preprocessing</h3>
+      <div class="ten008-container">
+        {#each ten_008 as image}
+          <div class="ten008-item">
+            <img class="ten008-img" src={image.src} alt="Image" />
+            <div class="caption">{image.caption}</div>
+          </div>
+        {/each}
+      </div>
       <p> In the initial preprocessing stage, we implement a pipeline designed to identify the positions of text boxes and extract text from them.</p>
       <ul>
         <li><strong>Text Segmentation: </strong> Creates a mask using a text segmentation model specialized for manga, robust against cases such as oddly shaped text fields and non-text elements within speech bubbles.</li>
@@ -69,6 +82,10 @@
     <h2>Evaluation</h2>
     <p>The evaluation of the pipeline is separated into two major parts, one on the accuracy of page processing stage in capturing the correct position of texts and extracting the text accurately, the other part is in assessing the translation quality in context awareness and nuance. To effectively assess the accuracy, coherence, and context-awareness of the multi-agent translation system, we took a combination of automatic metrics such as BERTScore, as well as human evaluation to determine how well the system preserves the emotional nuance and narrative consistency.</p>
     
+    <section class="Processing Evaluation">
+        <h3>Processing Stage Evaluation</h3>
+    </section>
+
     <section class="Translation">
       <section class="bertscore">
         <h3>BERTScore and Human Evaluation</h3>
@@ -209,6 +226,12 @@
   .btn:hover {
     background: #555;
   }
+  
+  .caption {
+    margin-top: 5px;
+    font-size: 14px;
+    color: #555;
+  }
 
   .content {
     text-align: left; /* Aligns the content section to the left */
@@ -250,4 +273,22 @@
     object-fit: contain; /* Ensures it scales properly */
     margin: auto;
   }
+
+  .ten008-container {
+    display: flex;
+    gap: 10px; /* Adjust spacing between images */
+    justify-content: center; /* Center images horizontally */
+  }
+
+  .ten008-item {
+    text-align: center;
+  }
+
+  .ten008-img {
+    width: 100%; /* Adjust size as needed */
+    max-width: 200px; /* Set a max width */
+    height: auto;
+    border-radius: 8px; /* Optional: rounded corners */
+  }
+  
 </style>
