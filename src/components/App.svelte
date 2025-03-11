@@ -1,9 +1,9 @@
 <script>
   const ten_008 = [
-    { src: "/ten008_raw.jpg", caption: "Original image" },
-    { src: "/ten008_maskB.png", caption: "Text segmentation mask" },
-    { src: "/ten008_clusters.png", caption: "Filtered clusters (color-coded)" },
-    { src: "/ten008_boxes.png", caption: "Ordered text boxes" }
+    { src: "ten008_raw.jpg", caption: "Original image" },
+    { src: "ten008_maskB.png", caption: "Text segmentation mask" },
+    { src: "ten008_clusters.png", caption: "Filtered clusters (color-coded)" },
+    { src: "ten008_boxes.png", caption: "Ordered text boxes" }
   ];
 </script>
 
