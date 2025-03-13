@@ -312,13 +312,6 @@
   .btn:hover {
     background: #555;
   }
-  
-  .caption {
-    margin: 0; /* Removes any default margins */
-    padding: 0;
-    font-size: 14px;
-    color: #555;
-  }
 
   .content {
     text-align: left; /* Aligns the content section to the left */
@@ -363,9 +356,10 @@
 
   .ten008-container {
     display: flex;
+    flex-wrap: wrap;
     gap: 5px; /* Reduce space between items */
     justify-content: center; /* Keep images centered */
-    align-items: center; /* Align images on the same horizontal axis */
+    align-items: flex-start; /* Align images on the same horizontal axis */
   }
 
     .ten008-item {
@@ -373,16 +367,34 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: flex-start; /* Ensures consistent alignment */
-        min-height: 350px; /* Ensure all items have the same height */
+        justify-content: flex-start;
     }
 
     .ten008-img {
         width: 100%; /* Ensures images scale to container */
         max-width: 400px; /* Increase max width */
-        height: 350px; /* Set a fixed height to align them */
-        object-fit: contain; /* Maintain aspect ratio */
+        height: auto; /* Set a fixed height to align them */
+        object-fit: cover; /* Maintain aspect ratio */
         display: block;
+    }
+
+    .caption {
+        margin-top: 2px; /* Removes any default margins */
+        font-size: 14px;
+        color: #555;
+        text-align: center;
+    }
+
+    /* Mobile optimization */
+    @media (max-width: 600px) {
+        .ten008-container {
+            flex-direction: column; /* Stack images vertically on small screens */
+            align-items: center;
+        }
+
+        .ten008-img {
+            max-width: 100%; /* Ensure images don't overflow */
+        }
     }
   
 </style>
