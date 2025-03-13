@@ -110,8 +110,8 @@
             <li><strong>Text Extraction: </strong> 
                 <ul>
                     <li>Uses Levenshtein distance ratio to penalize common errors (misidentified page elements) as deletions while accurately evaluating the accuracy of the rest of the extracted text.</li>
+                    <img src="levenshtein_ratio.png" alt="Formula used for Levenshtein Ratio" class="ten008-img">
                     <li>Also used by comparable projects (<a href="#lippmann-reference">Lippmann et al.</a>), allowing for comparison in performance.</li>
-                    <img src="levenshtein_ratio.png" alt="Formula used for Levenshtein Ratio" class="eval-image">
                 </ul>
             </li>
             <li><strong>Text Box Position: </strong> 
@@ -185,7 +185,7 @@
             <li>Please note that these results come from processing using an A40 GPU; with increased computational power, the latency is expected to be significantly lower.</li>
         </ul>
         <div class="ten008-item">
-            <img class="eval-image" src={"latency_table.png"} alt="Image" />
+            <img class="ten008-img" src={"latency_table.png"} alt="Image" />
             <div class="caption">{"Latency breakdown by stage"}</div>
         </div>
     </section>
