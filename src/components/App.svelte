@@ -5,6 +5,14 @@
     { src: "ten008_clusters.png", caption: "Filtered clusters (color-coded)" },
     { src: "ten008_boxes.png", caption: "Ordered text boxes" }
   ];
+  const processing_eval = [
+    { src: "Levenshtein.png", caption: "Levenshtein distance, visualized" },
+    { src: "split_boxes.png", caption: "Green/blue boxes correspond to baseline/observed boxes, respectively" }
+  ];
+  const processing_results = [
+    { src: "TEA_dist.png", caption: "Distribution of accuracy metric results by page" },
+    { src: "PT_dist.png", caption: "Distribution of processing times by page" }
+  ];
 </script>
 
 <main>
@@ -23,6 +31,7 @@
     <a href="https://github.com/nljumaoas/dsc180b" class="btn"> Code</a>
     <a href="https://drive.google.com/file/d/1SGo3LI8U6_L-Rc5T-r2pMld7FOGKrkRS/view?usp=drive_link" class="btn"> Poster</a>
     <a href="https://github.com/mantra-inc/open-mantra-dataset" class="btn"> Data</a>
+    <a href="https://drive.google.com/file/d/14818bWQoW3f_5AZUj8gQEFwnRGFYK75Y/view?usp=sharing" class="btn"> Demo</a>
   </div>
 
   <section class="content">
@@ -31,7 +40,11 @@
     <p>Our goal is to combine recent advancements in multi-agent translation systems and context-aware multimodal translation, leveraging the increasing power of LLMs and VLMs to create a manga translation pipeline that has both convenience of machine translation and the quality of human translation. In doing so, we aim to demonstrate the potential of modular multi-agent frameworks to flexibly accommodate a wide variety of media, which we believe can facilitate the globalization of translated content at affordable costs, allowing for the enrichment of people all around the world.</p>
     
     <h2>Dataset</h2>
-    <p>Our primary baseline dataset comes from OpenMantra, an automatic manga translation project that provides 214 manually translated and annotated manga pages for use as a benchmark for future research. </p>
+    <p>Our primary baseline dataset comes from OpenMantra (<a href="#openmantra-reference">Hinami et al.</a>), an automatic manga translation project that provides 214 manually translated and annotated manga pages for use as a benchmark for future research. </p>
+    <div class="ten008-item">
+        <img class="eval-image" src={"dataset.png"} alt="Image" />
+        <div class="caption">{"OpenMantra text field annotations (excerpt), visualized"}</div>
+    </div>
     <p>Notably, although we aim to match the general format for evaluation purposes, our identified text fields have a much tighter fit to facilitate typesetting. Additionally, while the English translation of the pictured text is used to evaluate the overall accuracy of our translation framework, we expect differences due to subjective measures of fluency and reader perception.</p>
 
     <h2>Methods</h2>
@@ -54,7 +67,7 @@
         <li><strong>Clustering: </strong> Groups potential text into clusters using the OPTICS algorithm.</li>
         <li><strong>Speech Bubble Filter: </strong> Filters out text outside speech bubbles to match baseline data by analyzing the background color of the text.</li>
         <li><strong>Page Element Ordering: </strong> Sorts clustered text boxes into reading order using the Magi model.</li>
-        <li><strong>Text Extraction: </strong> Extracts text using MangaOCR, which is designed to be robust against scenarios specific to manga, such as text overlaid over images or accompanied by furigana, wide varieties in font style and size, and different reading orientations.</li>
+        <li><strong>Text Extraction: </strong> Extracts text using MangaOCR, designed to be robust against scenarios specific to manga, such as text overlaid over images or accompanied by furigana, wide varieties in font style and size, and different reading orientations.</li>
         </ul>
     </section>
 
@@ -84,6 +97,30 @@
     
     <section class="Processing Evaluation">
         <h3>Processing Stage Evaluation</h3>
+        <div class="ten008-container">
+            {#each processing_eval as image}
+                <div class="ten008-item">
+                <img class="ten008-img" src={image.src} alt="Image" />
+                <div class="caption">{image.caption}</div>
+                </div>
+            {/each}
+        </div>
+        <p> The preprocessing stage is evaluated on two primary elements:</p>
+        <ul>
+            <li><strong>Text Extraction: </strong> 
+                <ul>
+                    <li>Uses Levenshtein distance ratio to penalize common errors (misidentified page elements) as deletions while accurately evaluating the accuracy of the rest of the extracted text.</li>
+                    <li>Also used by comparable projects (<a href="#lippmann-reference">Lippmann et al.</a>), allowing for comparison in performance.</li>
+                    <img src="levenshtein_ratio.png" alt="Formula used for Levenshtein Ratio" class="eval-image">
+                </ul>
+            </li>
+            <li><strong>Text Box Position: </strong> 
+                <ul>
+                    <li>Implemented box-center check to assess accuracy despite systematic discrepancies with baseline text boxes.</li>
+                    <li>Major discrepancies are tighter box fit and split text boxes in our model (see figure above), which facilitate typesetting later in the pipeline.</li>
+                </ul>
+            </li>
+        </ul>  
     </section>
 
     <section class="Translation">
@@ -113,7 +150,46 @@
     </section>
 
     <h2>Results</h2>
-    <p>The final result has shown that ... (will include a short summary of the result and also a few plots and tables to illustrate)</p>
+
+    <section class="Processing Results">
+        <h3>Processing Stage Results</h3>
+        <div class="ten008-container">
+            {#each processing_results as image}
+                <div class="ten008-item">
+                    <img class="ten008-img" src={image.src} alt="Image" />
+                    <div class="caption">{image.caption}</div>
+                </div>
+            {/each}
+        </div>
+        <p> After processing the entire OpenMantra dataset and comparing our output to the baseline, we observed the following results:</p>
+        <ul>
+            <li><strong>Text Extraction: </strong> 
+                <ul>
+                    <li>Achieves accuracy of 86.3%, with errors mostly coming from misidentified text fields that escape the filter.</li>
+                    <li>Outperforms <a href="#lippmann-reference">Lippmann et al.</a> by almost 10%, primarily due to the implementation of the speech bubble filter.</li>
+                    <li>Text extracted from actual dialogue fields is almost always perfectly extracted by the OCR system.</li>
+                </ul>
+            </li>
+            <li><strong>Text Box Position: </strong> 
+                <ul>
+                    <li>22% of pages contain at least one text box not included in the baseline data.</li>
+                    <li>Almost all of these are misidentified sound effects, which do not appear to significantly affect translation quality.</li>
+                </ul>
+            </li>
+            <li><strong>Latency: </strong> 
+                <ul>
+                    <li>Model requires an average of about six seconds of processing time per stage, primarily allotted to clustering.</li>
+                    <li>Pages requiring extraordinarily long processing times usually have large amounts of sound effects, which add significant computational load to the clustering algorithm.</li>
+                </ul>
+            </li>
+            <li>Please note that these results come from processing using an A40 GPU; with increased computational power, the latency is expected to be significantly lower.</li>
+        </ul>
+        <div class="ten008-item">
+            <img class="eval-image" src={"latency_table.png"} alt="Image" />
+            <div class="caption">{"Latency breakdown by stage"}</div>
+        </div>
+    </section>
+
     <section class="Translate result">
       <section class="bertscore">
         <h3>Performance and BERTScore</h3>
@@ -153,6 +229,16 @@
     <p>This research sets the foundation for sophisticated multimodal translation systems that balance linguistic accuracy with visual presentation.</p>
     
     <h2>References</h2>
+    <section id="lippmann-reference">
+        <p>Lippmann, Philip, Konrad Skublicki, Joshua Tanner, Shonosuke Ishiwatari, and Jie
+            Yang. 2024. “Context-Informed Machine Translation of Manga using Multimodal Large
+            Language Models.” <a href="https://arxiv.org/abs/2411.02589" target="_blank">[Link]</a></p>
+    </section>
+    <section id="openmantra-reference">
+        <p>Hinami, Ryota, Shonosuke Ishiwatari, Kazuhiko Yasuda, and Yusuke Matsui. 2021.
+            “Towards Fully Automated Manga Translation.” <a href="https://github.com/mantra-inc/open-mantra-dataset" target="_blank">[Link]</a></p>
+    </section>
+    
   </section>
   
 </main>
@@ -228,7 +314,8 @@
   }
   
   .caption {
-    margin-top: 5px;
+    margin: 0; /* Removes any default margins */
+    padding: 0;
     font-size: 14px;
     color: #555;
   }
@@ -276,19 +363,26 @@
 
   .ten008-container {
     display: flex;
-    gap: 10px; /* Adjust spacing between images */
-    justify-content: center; /* Center images horizontally */
+    gap: 5px; /* Reduce space between items */
+    justify-content: center; /* Keep images centered */
+    align-items: center; /* Align images on the same horizontal axis */
   }
 
-  .ten008-item {
-    text-align: center;
-  }
+    .ten008-item {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start; /* Ensures consistent alignment */
+        min-height: 350px; /* Ensure all items have the same height */
+    }
 
-  .ten008-img {
-    width: 100%; /* Adjust size as needed */
-    max-width: 200px; /* Set a max width */
-    height: auto;
-    border-radius: 8px; /* Optional: rounded corners */
-  }
+    .ten008-img {
+        width: 100%; /* Ensures images scale to container */
+        max-width: 400px; /* Increase max width */
+        height: 350px; /* Set a fixed height to align them */
+        object-fit: contain; /* Maintain aspect ratio */
+        display: block;
+    }
   
 </style>
