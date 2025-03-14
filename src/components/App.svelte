@@ -31,7 +31,7 @@
     <a href="https://github.com/nljumaoas/dsc180b" class="btn"> Code</a>
     <a href="https://drive.google.com/file/d/1SGo3LI8U6_L-Rc5T-r2pMld7FOGKrkRS/view?usp=drive_link" class="btn"> Poster</a>
     <a href="https://github.com/mantra-inc/open-mantra-dataset" class="btn"> Data</a>
-    <a href="https://drive.google.com/file/d/14818bWQoW3f_5AZUj8gQEFwnRGFYK75Y/view?usp=sharing" class="btn"> Demo</a>
+    <a href="https://drive.google.com/drive/folders/1nAKffHdOa7ws3KfeFXhdoTq7wIqyholz?usp=sharing" class="btn"> Demo</a>
   </div>
 
   <section class="content">
